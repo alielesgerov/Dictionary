@@ -19,7 +19,7 @@ public:
 	//Setter
 	void setKey(const T& key)
 	{
-		assert(!key.empty() && "Key is blank!");
+		assert(!key.empty());
 		this->key = new T(key);
 	}
 	void setValue(const T& value)
@@ -69,7 +69,7 @@ public:
 	//Setter
 	void setWordCount(size_t Word_count)
 	{
-		assert(Word_count && "Word count must be greater than zero");
+		assert(Word_count != 0);
 		this->Word_count = Word_count;
 	}
 	void setWords(Word<T>** Words)
@@ -98,15 +98,15 @@ public:
 	//
 	T* operator[](T& key)
 	{
-		for (size_t i = 0; i < this->Word_count; i++)
+		for (size_t i = 0; i < Word_count; i++)
 		{
-			if (key == this->Words[i]->getKey())
+			if (key == Words[i]->getKey())
 			{
-				return this->Words[i]->getValue();
+				return Words[i]->getValue();
 			}
 		}
 		addWord(key);
-		return this->Words[this->Word_count - 1]->getValue();
+		return Words[Word_count - 1]->getValue();
 	}
 
 	void addWord(T& key)
@@ -120,26 +120,21 @@ public:
 		temp[getWordCount()]->setKey(key);
 		temp[getWordCount()]->setValue("");
 
-		this->Words = temp;
+		Words = temp;
 		setWordCount(getWordCount()+1);
 	}
 	~Container()
 	{
-		for (size_t i = 0; i < this->Word_count; i++)
+		for (size_t i = 0; i <Word_count; i++)
 		{
-			delete this->Words[i];
+			delete Words[i];
 		}
-		delete[] this->Words;
+		delete[]Words;
 	}
 };
 
-
-
-void main()
+int main()
 {
-
-
-
 	Word<std::string>* w1 = new Word<std::string>("apple", "alma");
 	Word<std::string>* w2 = new Word<std::string>("ball", "top");
 	Word<std::string>* w3 = new Word<std::string>("task", "tapshiriq");
@@ -150,7 +145,6 @@ void main()
 	*container[key]="armud" ;
 	std::cout << "Pear: ";
 	std::cout << *container[key] << std::endl;
-
-	
+	return 0;
 }
 
