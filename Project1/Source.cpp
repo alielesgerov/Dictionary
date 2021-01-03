@@ -138,13 +138,14 @@ int main()
 	Word<std::string>* w1 = new Word<std::string>("apple", "alma");
 	Word<std::string>* w2 = new Word<std::string>("ball", "top");
 	Word<std::string>* w3 = new Word<std::string>("task", "tapshiriq");
-	Word<std::string>** Words = new Word<std::string> * [3]{w1, w2, w3 };
+	Word<std::string>* w4 = new Word<std::string>("boy","oglan");
+	Word<std::string>** Words = new Word<std::string> * [4]{w1, w2, w3, w4 };
 	std::cout << *w1 << std::endl;
-	Container<std::string> container(3, Words);
+	Container<std::string> arr(3, Words);
 	std::string key = "pear";
-	*container[key]="armud" ;
+	*arr[key]="armud" ;
 	std::cout << "Pear: ";
-	std::cout << *container[key] << std::endl;
+	std::cout << *arr[key] << std::endl;
 	return 0;
 }
 
